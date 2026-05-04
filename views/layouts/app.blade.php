@@ -16,7 +16,7 @@
     }
     .status-in-progress { 
         background-color: #ffc107; 
-        color: #000000; 
+        color: #ffffff; 
     }
     .status-completed { 
         background-color: #198754; 
