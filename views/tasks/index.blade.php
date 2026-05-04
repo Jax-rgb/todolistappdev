@@ -23,29 +23,29 @@
         <tbody>
             @foreach($tasks as $task)
             <tr>
-                <td>{{ $loop->iteration }}</td>
-                <td><strong>{{ $task->task_name }}</strong></td>
-                <td>
-                    <!-- Added text-dark here to make priority text black -->
-                    <span class="badge text-dark bg-{{ $task->priority == 'High' ? 'danger' : ($task->priority == 'Medium' ? 'warning' : 'info') }}">
-                        {{ $task->priority }}
-                    </span>
-                </td>
-                <td>{{ $task->deadline }}</td>
-                <td>
-                    <span class="badge status-{{ str_replace(' ', '-', strtolower($task->status ?? '')) }}">
-                        {{ $task->status }}
-                    </span>
-                </td>
-                <td>
-                    <a href="{{ route('tasks.edit', $task) }}" class="btn btn-sm btn-outline-primary">Update</a>
-                    <form action="{{ route('tasks.destroy', $task) }}" method="POST" class="d-inline">
-                        @csrf @method('DELETE')
-                        <button type="submit" class="btn btn-sm btn-outline-danger" onclick="return confirm('Delete this task?')">Remove</button>
-                    </form>
-                </td>
+             <td>{{ $loop->iteration }}</td>
+             <td><strong>{{ $task->task_name }}</strong></td>
+             <td>
+               <!-- Standard background classes; CSS in app.blade.php makes the text white -->
+                <span class="badge bg-{{ $task->priority == 'High' ? 'danger' : ($task->priority == 'Medium' ? 'warning' : 'info') }}">
+                   {{ $task->priority }}
+                </span>
+             </td>
+             <td>{{ $task->deadline }}</td>
+             <td>
+                 <span class="badge status-{{ str_replace(' ', '-', strtolower($task->status ?? '')) }}">
+                   {{ $task->status }}
+                 </span>
+             </td>
+             <td>
+              <a href="{{ route('tasks.edit', $task) }}" class="btn btn-sm btn-outline-primary">Update</a>
+              <form action="{{ route('tasks.destroy', $task) }}" method="POST" class="d-inline">
+                  @csrf @method('DELETE')
+                 <button type="submit" class="btn btn-sm btn-outline-danger" onclick="return confirm('Delete this task?')">Remove</button>
+              </form>
+             </td>
             </tr>
-            @endforeach
+@endforeach
         </tbody>
     </table>
 </div>
